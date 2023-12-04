@@ -78,6 +78,143 @@
             console.log(divE1);
             console.dir(divE1);
             // console.dir : 해당 값의 디렉토리 구조를 보고자 할 때 사용 (속성들에 대한 모든정보)
+
+            // 선택된 요소의 속성에 접근가능(. 을 통해서 가져올 수 있음)
+            console.log(divE1.id);     // id : 해당 요소의 id속성 값 가져오기
+            console.log(divE1.className);   // className : 해당 요소의 class속성의 값
+
+            console.log(divE1.innerHTML);   //innerHTML : 요소의 content영역 안의 html태그까지 포함해서 다 가져옴
+            console.log(divE1.innerText);   //innerText : 요소의 content영역 안의 text만 포함해서 가져옴
+
+            //해당 요소의 속성값 변경도 가능 : 속성에 접근한 후 대입을 통해서 변경
+            divE1.innerHTML = "<h2>innerHTML로 속성값 변경함</h2>"
+            divE1.style.backgroundColor = "red";
+
+            // divE1.innerText = "<h2>innerText로 속성값 변경함</h2>"
+            // divE1.style.color = "blue";
+
+            // innerHTML 태그를 인식하여 태그의 형태대로 보여줌  (ex. <b>innerHTML, innerText</b>라는 속성에 접근해서 가지고 오거나 변경함)
+            // innerText 무조건 다 문자로 인식(태그인식 X)
+        }
+    </script>
+
+    <hr>
+
+    <h2>2. 데이터 입력받는 구문(변수에 기록 가능)</h2>
+    <p>
+        1) 변수 = [window.]confirm("질문내용");<br>  질문내용을 변수에 저장
+        2) 변수 = [window.]prompt("질문내용");<br>
+        3) 변수 = 선택한 요소.속성(id, className, innerHTML, innerText,.....);<br>
+        4) 변수 = 선택한input요소.value;
+    </p>
+
+    <h3>1) [window.]confirm("질문내용"); </h3>
+    <p>
+        confirm호출시 "질문내용"과 "확인/취소" 버튼이 존재하는 알림창 발생<br>
+        확인버튼 클릭시 결과값 true, 취소버튼 클릭시 false를 반환
+    </p>
+
+    <button onclick="testConfirm();">confirm클릭</button>
+    <div id="area2"></div>
+
+    <script>
+        function testConfirm() {
+            var result = confirm("배고프면 확인, 아니면 취소");
+            console.log(result);
+
+            if(result) {
+                console.log("너무 배고프니 밥을달라");
+            }else{
+                console.log("배부름");
+            }
+
+            var divE2 = document.getElementById("area2");
+
+            if(result) {
+                divE2.innerHTML = "<h3>너무 배고프다.</h3>";
+            }else{
+                divE2.innerHTML = "<h3>배불러</h3>";
+            }
+        }
+    </script>
+
+    <br>
+
+    <h3>2) [window.]prompt("질문내용")</h3>
+    <p>
+        prompt호출시 "질문내용"과 입력할 수 있는 "텍스트 상자"와 "확인/취소" 버튼이 보여지는 알림창 발생<br>
+        확인버튼 클릭시 텍스트 상자에 입력한 값이 문자열로 반환<br>
+        취소버튼 클릭시 null반환
+    </p>
+
+    <button onclick="testPrompt();">prompt클릭</button>
+    <div id="area3"></div>
+
+    <script>
+        function testPrompt() {
+            var name = prompt("이름을 입력하세요");
+            var age = prompt("몇살 입니까");
+
+            console.log(name);
+            console.log(age);
+
+            var divE3 = document.getElementById("area3");
+            divE3.innerHTML = "당신의 이름은 <b>" + name + "</b> 나이는 <b>" + age + "</b>살 입니다.";
+        }
+    </script>
+
+    <br>
+    <button onclick="testPrompt2();">숫자입력</button>
+
+    <ul id="area4">
+
+    </ul>
+
+    <script>
+        function testPrompt2() {
+            var num = prompt("숫자만 입력하세요");
+            
+            /*
+                for(int i=1; i<10; i++){
+
+                }
+            */
+
+            // 이렇게하면 맨 마지막 목록만 보여짐
+        //    var a = document.getElementById("area4");
+        //    for(var i=1; i<=num; i++){
+        //     a.innerHTML = "<li>목록" + i + "</li>";
+        //    }
+
+        var str = "";
+        for(var i=1; i<=num; i++){
+            str += "<li>목록" + i + "</li>";
+        }
+        console.log(str);
+        document.getElementById('area4').innerHTML = str;
+
+        }
+    </script>
+
+    <h3>4) 선택한 input요소.value;</h3>
+    아이디 : <input type="text" id="userId"> <br>   <!-- type="text"생략은 가능하지만 script할때는 넣어줘야 찾을 수 있음 -->
+    비밀번호 : <input type="password" id="userPwd"> <br>
+
+    <button onclick="testInput();">로그인</button> <br>
+
+    <input id="area5">
+
+    <script>
+        function testInput() {
+            var input1 = document.getElementById("userId");
+            var input2 = document.getElementById("userPwd");
+
+            console.dir(input1);
+
+            var id = input1.value;
+            var pwd = input2.value;
+
+            document.getElementById('area5').value = id + ", " + pwd;
         }
     </script>
 
