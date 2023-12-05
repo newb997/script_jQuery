@@ -92,5 +92,139 @@
         }
     </script>
 
+    <!-- 231204 -->
+    <h3>3) name 속성값을 이용하여 요소 가져오기</h3>
+    <form action="">
+        <fieldset>
+            <legend>취미</legend>
+            
+            <input type="checkbox" name="hobby" value="game" id="game">
+            <label for="game">게임</label>
+
+            <input type="checkbox" name="hobby" value="movie" id="movie">
+            <label for="movie">영화감상</label>
+
+            <input type="checkbox" name="hobby" value="reading" id="reading">
+            <label for="reading">독서</label>
+
+            <input type="checkbox" name="hobby" value="sport" id="sport">
+            <label for="sport">운동</label>
+        </fieldset>
+    </form>
+
+    <br>
+
+    <div class="area" id="area3"></div>
+    <button onclick="accessName();">name으로 접근</button>
+
+    <script>
+        function accessName() {
+            var hobby = document.getElementsByName("hobby");
+
+            console.log(hobby);
+
+            var area3 = document.getElementById("area3");
+
+            for(var i = 0; i<hobby.length; i++){
+                // console.log(hobby[i].checked); 선택이 되어 있으면 true가 반환됨, 그렇지 않으면 false반환
+                if(hobby[i].checked) {
+                    console.log(hobby[i].value);
+                    area3.innerHTML += hobby[i].value + "<br>";  // =으로 하면 마지막거만 출력.  += 해줘야 이어서 출력
+                }
+            }
+        }
+    </script>
+
+    <h3>4) 클래스를 이용하여 요소 가져오기</h3>
+    <div class="test" id="class1"></div>
+    <p class="test"></p>
+    <ul class="test">
+        <li></li>
+        <li></li>
+    </ul>
+    <pre class="test test1"></pre>
+
+    <button onclick="accessClass();">class로 접근</button>
+
+    <script>
+        function accessClass() {
+            var test = document.getElementsByClassName("test");
+
+            console.log(test);
+
+            var div1 = document.getElementById('class1');
+            for(var i=0; i<test.length; i++){
+                console.log(test[i]);
+                div1.innerText += test[i] + "<br>";
+                // div1.innerHTML += test[i] + "<br>";
+            }
+        }
+    </script>
+
+    <br>
+
+    <h3>5) 내가 원하는 요소 자유자재로 가져오기(선택자 활용)</h3>
+    
+    <div id="test2"></div>
+    <div class="test">
+        <h2>HTML5</h2>
+        <h2>javacript</h2>
+    </div>
+    <span>jQuery</span>
+    <h2>jsp</h2>
+
+    <button onclick="accessSelector();">클릭</button>
+
+    <script>
+        function accessSelector() {
+            // 선택자를 이용하여 요소를 가져오고자 할 때 
+            // document.querySelector("선택자")  =>  선택된 첫 번째 요소 객체 하나만 반환
+            // document.querySelectorALl('선택자')  =>  선택된 요소들을 배열에 담아서 반환
+
+            var divE1 = document.querySelector('#test2');
+            var h2E1 = document.querySelector('.test>h2');
+            var spanE1 = document.querySelector('.test+span');
+
+            console.log(divE1);
+            console.log(h2E1);
+            console.log(spanE1);
+
+            var h2E2 = document.querySelectorAll('.test>h2');
+            for(var i = 0; i<h2E2.length; i++ ){
+                console.log(h2E2[i]);
+            }
+        }
+    </script>
+
+    <br>
+
+    <!-- div>(p.cla1>lorem)*3 -->
+    <div>
+        <p class="cla1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur reiciendis, quo earum blanditiis quam ullam asperiores, nisi officia, dicta excepturi perferendis quibusdam cumque possimus temporibus. Quas, placeat mollitia? Non, quisquam!</p>
+        <p class="cla2" id=idp>Eos, nulla labore! Ducimus sunt ipsum adipisci doloribus at. Ab quaerat impedit, cupiditate eius vitae atque temporibus repudiandae. Iure tempora mollitia quisquam ea blanditiis, ex voluptate provident molestiae sit aperiam?</p>
+        <p class="cla1">Expedita asperiores eum fugit? Accusantium repellat perferendis ipsum quia nemo rerum delectus quae est. Atque veniam molestias cum reiciendis, possimus velit sequi nam repudiandae suscipit porro, nisi animi amet sed!</p>
+    </div>
+
+    <button onclick="select();">querySelector</button>
+    <button onclick="selectAll();">querySelectorALl</button>
+
+    <script>
+        
+        function select() {
+            var p1 = document.querySelector('#idp');
+            p1.style.color = "hotpink";
+        }
+
+        function selectAll() {
+            var p2 = document.querySelectorAll('.cla1');
+            for(var i = 0; i<p2.length; i++){
+                p2[i].style.color = "yellowgreen";
+            }
+        }
+    </script>
+    
+
+
+
 </body>
 </html>

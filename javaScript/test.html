@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="04.변수와 자료형.html" method="post" name="regFrm">
+        <table border="1" width="400">
+            <tr>
+                <td colspan="2" align="center">회원가입</td>
+            </tr>
+            <tr>
+                <td width="30%">아이디</td>
+                <td width="70%"><input type="text" name="id" size="35"></td>
+            </tr>
+            <tr>
+                <td >비밀번호</td>
+                <td><input type="password" name="pwd" size="35"></td>
+            </tr>
+            <tr>
+                <td>비밀번호 확인</td>
+                <td><input type="password" name="repwd" size="35"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="button" value="회원가입" onclick="inputCheck();">
+                    <input type="reset" value="초기화">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+    <script>
+        function inputCheck() {
+            let f = document.regFrm;
+            if(f.id.value == ""){
+                alert("아이디를 입력해 주세요");
+                f.id.focus();
+                return;
+            }
+            if(f.pwd.value != f.repwd.value){
+                alert("비밀번호가 다릅니다")
+                f.pwd.value = "";
+                f.repwd.value = "";
+                f.pwd.focus();
+                return;
+            }
+
+
+
+            document.regFrm.submit();   //버튼 타입을 submit으로 하면 바로 action으로 넘어가기 때문에 바로 못가게 막아줘야함 
+        }
+    </script>
+</body>
+</html>
