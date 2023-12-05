@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열</title>
+    <style>
+        .area{
+            width: 400px;
+            border: 1px solid;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>배열</h1>
+    <p>
+        - 변수 선언시 별도의 자료형 지정하지 않음<br>
+        - 어떤 자료형의 값들이든 다 하나의 배열 공간에 담을 수 있음<br>
+        - 크기의 제약도 없음<br>
+        - 존재하지 않는 인덱스 번호를 참조해도 오류가 나지 않음.undefind리턴
+    </p>
+
+    <button onclick="arrayTest1();">확인하기</button>
+    <div id="area1" class="area"></div>
+
+    <script>
+        function arrayTest1() {
+            const arr = ['홍길동', '서울', 20, true, [1, 2, 3]];     //배열안에 배열 넣기 가능
+            
+            console.log(arr);
+            console.log(arr[1]);
+            console.log(arr[3]);
+            console.log(arr[4]);
+            console.log(arr[4][1]); //인덱스번호 4번중 인덱스번호 1인거 
+            
+            const area1 = document.getElementById("area1");
+            
+            // for(let i=0; i<arr.length; i++){
+            //     area1.innerHTML += arr[i] + "<br>";
+            //     //area1.innerHTML += `${arr[i]}<br>`;  //백틱사용
+            // }
+
+            // for(let 변수(index번호) in 배열)
+            for(let i in arr){    //향상된 for
+                area1.innerHTML += `${arr[i]}<br>`;
+            }
+        }
+    </script>
+
+    <h3>* 배열의 선언</h3>
+    <button onclick="arrayTest2();">확인하기</button>
+
+    <script>
+        function arrayTest2() {
+            const arr1 = new Array();
+            const arr2 = new Array(3);
+            const arr3 = [];
+            
+            console.log(arr1);
+            console.log(arr2);
+            console.log(arr3);
+
+            // 배열에 값 넣기
+            arr1[0] = '바나나';
+            arr1[1] = '사과';
+            arr1[2] = '키위';
+            console.log('----------------------------');
+            console.log(arr1);
+
+            arr2[0] = '자동차';
+            arr2[1] = '기차';
+            arr2[2] = '오토바이';
+            arr2[3] = '제트기';
+            console.log(arr2);
+
+            // 배열 선언과 동시에 초기화    new Array는 생략가능
+            const arr4 = ['java', 'oracle', 'jsp'];
+            const arr5 = new Array('홍길동','애드인에듀','신사임당'); 
+            console.log(arr4);
+            console.log(arr5);
+
+        }
+    </script>
+</body>
+</html>

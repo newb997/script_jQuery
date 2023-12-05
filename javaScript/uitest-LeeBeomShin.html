@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시험</title>
+    <style>
+        .area {
+            background-color: darkseagreen;
+            padding: 15px;
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        .td1 {
+            padding-bottom: 20px;
+        }
+
+        #a1 {
+            margin-top: 15px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>회원가입</h1>
+    <form action="" class="area" name="area">
+        <fieldset>
+            <legend>필수 입력 사항</legend>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <td><input type="text" id="userId" name="id" size="35" placeholder="아이디 10글자 이내" onfocus="this.placeholder=''" onblur="this.placeholder='아이디 10글자 이내'"></td>
+                    <td><button onclick="testInput();">중복확인</button> <br></td>
+                </tr>
+                <tr>
+                    <th>비밀번호</th>
+                    <td><input type="password" id="userPwd" name="pwd" size="35" placeholder="영문, 숫자, 특수문자 포함8자이상"  onfocus="this.placeholder=''" onblur="this.placeholder='영문, 숫자, 특수문자 포함8자이상'"></td>
+                </tr>
+                <tr>
+                    <th>비밀번호 확인</th>
+                    <td><input type="password" id="userRePwd" name="repwd" size="35"></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><input type="email" size="35"></td>
+                    <td>
+                        <select name="national">
+                            <option value="ko">직접입력</option>
+                            <option value="ko">google.com</option>
+                            <option value="ko">naver.com</option>
+                            <option value="ko">daum.net</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>추가 정보</legend>
+            <table>
+                <tr>
+                    <td class="td1">프로필사진 : </td>
+                </tr>
+                <tr>
+                    <td class="td1">성별 : <input type="radio" name="gender" checked>남자 &emsp; <input type="radio" name="gender">여자<br></td>
+                </tr>
+                <tr>
+                    <td class="td1">생년월일 : <input type="date"></td>
+                </tr>
+                <tr>
+                    <td class="td1">
+                        취미 <br>
+                        <input type="checkbox" checked>야구
+                        <input type="checkbox">농구
+                        <input type="checkbox">축구<br>
+                        <input type="checkbox" checked>공부
+                        <input type="checkbox">음악감상<br>
+                        <input type="checkbox">기타 : <input type="text" size="35">
+                    </td>
+                </tr>
+                <tr>
+                    <td>자기소개<br>
+                        <textarea name="" id="" cols="60" rows="10"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        
+        <input type="button" id="a1" value="회원가입" onclick="returnTest();">
+        <input type="reset" id="a1" value="초기화">
+        <!-- 
+        button onclick="returnTest();">회원가입</button>
+        <button type="reset">다시입력</button> 
+        강사님 이글을 보신다면 button과 input을 한번 더 설명해 주십시오 일단 둘다 써봤는데 안되어서 input썼읍니다.
+        -->
+    </form>
+
+    <script>
+        function returnTest() {
+            let id = document.getElementById('userId');
+            let pwd = document.getElementById('userPwd');
+            let rePwd = document.getElementById('userRePwd');
+
+            // if(id.value == ""){
+            //     alert("아이디를 입력해 주세요");
+            //     id.focus();
+            //     return;
+            // }
+
+            if(pwd.value != rePwd.value){
+                alert("비밀번호가 다릅니다")
+                pwd.value = "";
+                rePwd.value = "";
+                pwd.focus();
+                return;
+            }else if(pwd.value == rePwd.value){
+                alert("비밀번호가 일치합니다.")
+                document.area.submit();
+            }
+            
+            
+            if(pwd.value == ""){
+                alert("비밀번호를 입력해주세요.")
+                pwd.focus();
+            }
+
+            
+        }
+    </script>
+</body>
+</html>
