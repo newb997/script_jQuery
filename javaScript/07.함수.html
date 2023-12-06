@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수</title>
+    <style>
+        .area{
+            width: 500px;
+            border: 1px solid;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>함수</h1>
+    <h3>* 선언적 함수(function 하고 이름쓰는거)</h3>
+    <pre>
+        function 함수명(매개변수 있으면 쓰고 없으면 안쓰고 필요한만큼[매개변수, 매개변수,...]) {
+            함수호출시 실행할 코드;
+            return 결과값;  있으면 넣고 없으면 생략
+        }
+    </pre>
+
+    <div id="area1" class="area"></div>
+    <button onclick="test1();">실행확인</button>
+
+    <script>
+        function test1() {
+            document.getElementById('area1').innerHTML = 'test1() 함수 실행<br>';
+        }
+    </script>
+
+    <h3>* 익명 함수(이름없는함수</h3>
+    <pre>
+        변수 | 속성 = function(매개변수 있으면 넣고 없으면 안넣고 필요한만큼[매개변수, 매개변수,...]) {
+            실행할 코드;
+            return 결과값;  있으면 넣고 없으면 생략
+        }
+    </pre>
+    - 특정 변수나 속성에 대입되는 함수 제시시 주로 사용됨
+        (주로 이벤트 핸들러 작성시 사용)
+    
+    <div id="area2" class="area"></div>
+    <button id="btn">실행하기</button>
+
+    <script>
+        const btn = document.getElementById('btn');
+        btn.onclick = function() {  //버튼이 클릭되면 function을 실행시켜라.  / 이벤트 핸들러 너무 많으면 잘 안먹힘
+            document.getElementById('area2').innerHTML = '이벤트핸들러를 통해 실행됨';
+        }
+    </script>
+
+    <h3>* 화살표 함수(Arrow Function</h3>
+    <pre>
+        - 본문에 리턴만 있을 때
+          변수 = ([매개변수, 매개변수,...]) => 리턴값;
+        - 본문에 내용이 여러줄 일때
+          변수 = ([매개변수, 매개변수,...]) => {
+            실행코드;
+            실행코드;
+            ...
+            return 결과값;  있으면 넣고 없으면 생략
+          }
+        - 익명함수를 간단히 작성하는 방법(ES6(ES2015)에서 추가)
+    </pre>
+
+    <div id="area3" class="area"></div>
+    <button id="btn2">실행하기</button>
+
+    <script>
+        const area3 = document.getElementById('area3');
+        const btn2 = document.getElementById('btn2');
+        const value = '홍길동';
+        const age = 25;
+     
+        //예제1
+        // btn2.onclick = function() {  
+        //     area3.innerHTML = value + '이벤트핸들러를 통해 실행됨<br>';
+        // }
+        // 위의 것을 화살표 함수로 고치면(function 생략)
+        // 매개변수가 없는 함수 : 반드시 괄호 있어야 함
+        btn2.onclick = () => area3.innerHTML += '화살표 함수가 실행됨<br>'; // 매개변수가 없을때 괄호 넣어줘야 오류 안남
+
+        //예제2
+        // btn2.onclick = function(value) {  
+        //     area3.innerHTML = `${value}님 환영합니다<br>`;
+        // }
+        // 위의 것을 화살표 함수로 고치면(function 생략)
+        // 매개변수가 1개인 함수 : 반드시 괄호 생략 가능
+        btn2.onclick = value => area3.innerHTML += `${value}님 환영합니다<br>`;    //매개변수 한개일때는 괄호 생략
+
+        //예제3
+        // btn2.onclick = function(value, age) {  
+        //     area3.innerHTML = `${value}, ${age} 화살표 함수가 실행됨<br>`;
+        // }
+        // 위의 것을 화살표 함수로 고치면(function 생략)
+        // 매개변수가 2개 이상인 함수 : 반드시 괄호 있어야 함
+        btn2.onclick = (value, age) => area3.innerHTML += `${value}, ${age} 매개변수가 2개 이상인 화살표 함수가 실행됨<br>`;
+
+        // 몬문 내용이 여러줄 일 때
+        const result = () => {
+            const a = 1;
+            const b = 2;
+            return a + b;
+        }
+    </script>
+
+    <h3>* 즉시 실행 함수(iife(Immediately Invoked Function Expression))</h3>
+    <pre>
+        - 정의하면서 즉시 실행되는 함수
+        - 단 한번만 호출됨
+          ([변수] = function([매개변수, 매개변수,...]) {
+            실행될 코드;
+          })(인자,...);  전달인자
+    </pre>
+
+    <script>
+        //window.onload = function() {}
+
+        (function(){
+            console.log('iife 실행');
+        })();
+
+        (function(name){
+            console.log(`Hi, ${name}`);
+            const k = 999;
+            console.log(k);
+        })('애드인에듀');
+
+        
+        (function(name){
+            console.log(`Hi, ${name}`);
+        })('애드인에듀');
+        //위에를 화살표 함수로 바꾸면
+        console.log('---------------------------------');
+        ((name) => console.log(`Hi, ${name}`))('애드인에듀');
+    </script>
+
+    <hr>
+
+    <h2>함수의 매개변수</h2>
+    <div id="area4" class="area"></div>
+    <button onclick="test2('안녕');">문자열 매개변수</button>
+    <button onclick="test2(10);">숫자 매개변수</button>
+    <button onclick="test2([1,2,3,]);">배열 매개변수</button>
+    <button onclick="test2(true);">논리 매개변수</button>
+
+    <br>
+    <button onclick="test2(prompt('이름 입력'));">이름입력</button>
+    <!-- 매개변수의 개수가 더 많이 절달 가능 단, 초과된 전달값은 무시됨 -->
+    <button onclick="test2('안녕','반가워')">여러개 매개변수</button>
+
+    <!-- 매개변수의 개수가 더 적게 전달 가능(오류안남) 단 출력하면 undefined-->
+    <button onclick="test2()">0개의 매개변수</button>
+
+    <script>
+        //매개변수 제시시 자료형지정x, 선언구문x    변수명만 씀
+        function test2(value) {
+            document.getElementById('area4').innerHTML += value;
+        }
+    </script>
+    <!-- 231206 end -->
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
