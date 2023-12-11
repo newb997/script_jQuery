@@ -26,7 +26,7 @@
 <body>
     <h1>window 객체</h1>
     <p>
-        window 객체는 자바스크리트의 최상위 객체이며 BOM과 DOM이 있다. <br>
+        window 객체는 자바스크리트의 최상위 객체(자바에선 object)이며 BOM과 DOM이 있다. <br>
         - BOM(Browser Object Model) : location, screen, navigator, history <br>
         - DOM(Document Object Model) : document
     </p>
@@ -129,10 +129,10 @@
         area1.innerHTML = `${hour} : ${min} : ${sec}`;
 
         //위에있는 if문을 삼항연산자로 바꾸면 2
-        hour < 10 ? "0" + hour : hour;
-        min < 10 ? "0" + min : min;
-        sec < 10 ? "0" + sec : sec;
-        area1.innerHTML = `${hour < 10 ? "0" + hour : hour} : ${min < 10 ? "0" + min : min} : ${sec < 10 ? "0" + sec : sec}`;
+        // hour < 10 ? "0" + hour : hour;
+        // min < 10 ? "0" + min : min;
+        // sec < 10 ? "0" + sec : sec;
+        // area1.innerHTML = `${hour < 10 ? "0" + hour : hour} : ${min < 10 ? "0" + min : min} : ${sec < 10 ? "0" + sec : sec}`;
 
         }, 1000);
     }
@@ -236,9 +236,9 @@
             console.log(img1);
 
             //속성 추가(객체를 만든 후에 속성 추가하는 점(.) 으로 추가해주면됨)
-            img1.src = "resources/img/scary1.jpg";
-            img1.width = "200";
-            img1.heught = "150";
+            img1.src = "resources/img/cat4.jpg";
+            img1.width = "300";
+            img1.heught = "250";
             console.log(img1);
 
             // document.getElementById('area3').appendChild(img1);

@@ -11,7 +11,7 @@
         }
     </style>
 </head>
-<body>
+
     <h1>이벤트</h1>
     <h2>1. 이벤트 모델 종류</h2>
     <h3>* 이벤트 속성에 핸들러 바인딩</h3>
@@ -89,7 +89,7 @@
 <button id="btn4">이벤트 속성에 핸들러 바인딩</button>
 <button id="btn5">addEventListener방식</button>
 <button onclick="test2();">인라인방식</button>
-<button onclick="test2(this);">인라인방식2</button>
+<button onclick="test3(this);">인라인방식2</button>
 
 <script>
     //기본이벤트 방식
@@ -107,9 +107,83 @@
         e.target.innerHTML = "버튼클릭됨";
         window.event.target.style.backgroundColor = "red";
         this.style.color = "white";
+
+        // 231208 end
+
+    }
+
+    // 231211
+
+    //* addEventListener 방식
+    document.getElementById('btn5').addEventListener("click", function(e){
+        console.log(e.target);
+        console.log(window.event.target);
+        console.log(this);
+    });
+
+    //* 인라인 방식
+    function test2(e) {
+        //console.log(e.target);              //호출시 매개변수를 전달하지 않아서 사용불가
+        console.log(window.event.target);     //사용가능
+        console.log(this);                    //window객체를 가리킴
+
+        window.event.target.innerHTML = "버튼변경";
+    }
+
+    //* 인라인 방식2 ( 매개변수를 전달 )
+    function test3(k) { //변수이름 내맘대로
+        console.log(k.target);
+        console.log(window.event.target);    
+        console.log(this);  
+
+        k.style.backgroundColor = "yellow";
     }
 </script>
 
+<hr>
+
+<h3>3. 태그별 기본적으로 가지고 있는 이벤트 제거</h3>
+<p>
+    기본적으로 이벤트를 가지고 있는 요소<br>
+    - a태그 : 클릭시 href에 있는 값(url)으로 링크가 들어있음<br>
+    - submit 버튼 : form의 action속성에 있는 값(url)으로 링크가 들어있음<br>
+
+    태그내에 기본적으로 설정되어있는 이벤트가 실행안되게 하고 싶을때<br>
+    -> 이벤트 핸들러의 return값을 false로 하면 기본 이벤트가 실행안됨
+</p>
+
+<a href="https://naver.com" onclick="alert('이벤트 작성')">네이버로 이동</a> &emsp;
+<a href="https://naver.com" onclick="alert('이벤트 작성'); return false">네이버로 이동( return false )</a>  <!-- return false 링크로 가는거 막음 -->
+<br>
+
+<a href="https://google.com" onclick="return test4()">구글로 이동</a>
+<script>
+    function test4() {
+        alert('알림창');
+        return false;
+    }
+</script>
+
+<br><br>
+
+<form action="12.window객체.html">
+    아이디 : <input type="text" name="userId" id="userId" required><br>
+    비밀번호 : <input type="password" name="userPwd" id="userPwd"><br>
+    비밀번호 확인 : <input type="password" name="userRePwd" id="userRePwd"><br>
+    <input type="submit" onclick="return validate()"><br>
+    <!-- <input type="button" onclick="validate()" value="제출2"> -->
+</form>
+<script>
+    function validate() {
+        const userPwd = document.getElementById('userPwd').value;
+        const userRePwd = document.getElementById('userRePwd').value;
+
+        if(userPwd != userRePwd){
+            alert('비밀번호 불일치');
+           return false;
+        }
+    }
+</script>
 
 
 

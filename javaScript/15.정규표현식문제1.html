@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정규표현식 문제1</title>
+</head>
+<body>
+    <form action="01.개요.html">
+        아이디 : <input type="text" name="userId" id="userId"><br>
+        비밀번호 : <input type="password" name="userPwd" id="userPwd"><br>
+        비밀번호확인 : <input type="password" name="userRePwd" id="userRePwd">
+        <input type="submit" onclick="return validate()">
+    </form>
+
+    <!-- 내 답 -->
+    <script>
+        function validate() {
+            // 아이디 : 영문자 또는 숫자로만 5글자 이상 12글자 이하
+            let userId = document.getElementById("userId").value;
+            if (!/^[a-zA-Z0-9]{5,12}$/.test(userId)) {
+                alert("아이디는 영문자 또는 숫자로 5글자 이상 12글자 이하이어야 합니다.");
+                return false;
+            }
+            // 비밀번호 : 영문자 또는 숫자로 시작하고 중간에 모든 글자 가능 9글자이상 20글자 미만
+            let userPwd = document.getElementById("userPwd").value;
+            if (!/^[a-zA-Z0-9].{7,19}$/.test(userPwd)) {
+                alert("비밀번호는 영문자 또는 숫자로 시작하고 중간에 모든 글자 가능하며 9글자 이상 20글자 미만이어야 합니다.");
+                return false;
+            }
+            
+            // 비밀번호확인 : 비밀번호 확인 같은지 체크 
+            let userRePwd = document.getElementById("userRePwd").value;
+            if (userPwd !== userRePwd) {
+                alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+
+    <!-- 강사님 답 -->
+    <script>
+        function validate() {
+          // 아이디 : 첫글자는 반드시 영문자하고 영문자, 숫자 포함 총 4~12자로 입력하시오.
+          const userId = document.getElementById("userId").value;
+          const regExp = /^[a-z][a-z\d]{3-11}$/i
+    
+          // 비밀번호 : 영문자, 숫자, 특수문자로 총 8~15자로 입력하시오.
+          regExp = /^[a-z\d~!@#$%^&*]{8-15}$/i
+          regExp = /^.{8-15}/   //한글까지 포함
+    
+          // 한글로만 이루어져 있어야 되며 2글자 이상으로 입력하시오.
+          regExp = /^[가-힣]{2,}$/
+    
+          // 이메일
+          regExp = /^\w+@\w+\.\w+(\.\w+)?/i
+      }
+      </script>
+
+
+
+
+
+
+
+
+    <!-- 231211 end -->
+</body>
+</html>

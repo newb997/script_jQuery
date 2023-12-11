@@ -73,14 +73,14 @@
 
             const student0 = new Student('홍길동', 100,80,90,70);
             console.log(student0);
-            const student1 = new Student('이길동', 80,90,58,75);
-            const student2 = new Student('김길동', 68,60,92,83);
+            const student1 = new Student('이길동', 80,98,58,75);
+            const student2 = new Student('김길동', 68,65,77,83);
 
             const students = [student0, student1, student2];
             // console.log(students);
 
             for(i in students) {
-                area2.innerHTML = `이름 : ${students[i].name},
+                area2.innerHTML += `이름 : ${students[i].name},
                                    총점 : ${students[i].getSum()},
                                    평균 : ${students[i].getAvg()}<br>`;
             }
