@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>ani_slideDown_up</title>
+    <style>
+        div {
+            border: 3px solid yellow;
+            background-color: rgb(253, 227, 245);
+            border-radius: 10px;
+            width: 300px;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            padding-left: 10px;
+        }
+
+        p {
+            border: 2px solid gray;
+            border-radius: 10px;
+            width: 300px;
+            height: 50px;
+            line-height: 50px;
+            padding-left: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h3>* slideDown(), slideUp()</h3>
+    <span>
+        요소를 펼쳐서 보여주고 접어서 보이지 않게함
+    </span>
+    <br><br>
+
+    <div><li class="list-group-item list-group-item-warning">Q. 질문 입니다</li></div>
+    <p>A. 질문에 대한 답입니다</p>
+
+    <div>Q. 점심시간은 언제 입니까?</div>
+    <p>A. 12시 20분 ~ 13시 10분까지 입니다</p>
+
+    <div>Q. 종료시간은 언제 입니까?</div>
+    <p>A. 18시00분 입니다</p>
+
+    <div>Q. 평가날짜는 언제 입니까?</div>
+    <p>A. 2024년 1월 중순 쯤입니다</p>
+
+    <div>Q. 강의실은 어디 입니까?</div>
+    <p>A. 제3강의장 입니다</p>
+
+    <script>
+        $(() => {
+            $('div').click(function() {
+                const p = $(this).next();
+                if(p.css('display')=='none'){
+                    p.slideDown();
+                } else {
+                    p.slideUp();
+                }
+            })
+        })
+    </script>
+</body>
+</html>
